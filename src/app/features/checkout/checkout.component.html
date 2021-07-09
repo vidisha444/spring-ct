@@ -1,0 +1,46 @@
+<button mat-mini-fab routerLink="/landing">
+  <mat-icon>arrow_back</mat-icon>
+</button>
+
+<button class="pay-now" mat-mini-fab (click)="payNow()">
+  <mat-icon>paid</mat-icon>
+</button>
+
+<div class="mat-elevation-z8 w100">
+  <table class="w100" mat-table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef> Category </th>
+      <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+    </ng-container>
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef> Price </th>
+      <td mat-cell *matCellDef="let element"> {{element.price}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let element" class="action-td">
+
+        <button mat-icon-button (click)="remove(element)">
+          <mat-icon>remove_circle</mat-icon>
+        </button>
+        <div>{{element.qtyToBuy}}</div>
+        <button mat-icon-button (click)="add(element)">
+          <mat-icon>add_circle</mat-icon>
+        </button>
+
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
